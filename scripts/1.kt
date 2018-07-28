@@ -9,7 +9,7 @@ fun day1(filename : String) : Int {
         val direction = it[0]
         val distance = it.substringAfter(direction).toInt()
 
-        println("Facing: $facing, Pos: ($x, $y), Instruction: $it")
+//        println("Facing: $facing, Pos: ($x, $y), Instruction: $it")
 
         if(direction == 'R'){
             facing += 1
@@ -40,7 +40,7 @@ fun day1_2(filename: String) : Int{
         val direction = it[0]
         val distance = it.substringAfter(direction).toInt()
 
-        println("Facing: $facing, Pos: ($x, $y), Instruction: $it")
+//        println("Facing: $facing, Pos: ($x, $y), Instruction: $it")
 
         if(direction == 'R'){
             facing += 1
@@ -52,71 +52,58 @@ fun day1_2(filename: String) : Int{
 
         when(facing) {
             0 -> {
-                val newY = y + distance
-
-                if(y < newY){
-                    for(i in y..newY){
-                        if ("$x$i" in visited) return x.absoluteValue + i.absoluteValue
-                        visited.add("$x$i")
-                    }
-                } else {
-                    for(i in y downTo newY){
-                        if ("$x$i" in visited) return x.absoluteValue + i.absoluteValue
-                        visited.add("$x$i")
-                    }
-                }
-                y = newY
+                val intersect = moveVertically(y, y + distance, x, visited)
+                if (intersect != 0) return intersect
+                y += distance
             }
             1 -> {
-                val newX = x + distance
-
-                if(x < newX){
-                    for(i in x..newX){
-                        if ("$i$y" in visited) return i.absoluteValue + y.absoluteValue
-                        visited.add("$i$y")
-                    }
-                } else {
-                    for(i in x downTo newX){
-                        if ("$i$y" in visited) return i.absoluteValue + y.absoluteValue
-                        visited.add("$i$y")
-                    }
-                }
-                x = newX
+                val intersect = moveHorizontally(x, x + distance, y, visited)
+                if (intersect != 0) return intersect
+                x += distance
             }
             2 -> {
-                val newY = y - distance
-
-                if(y < newY){
-                    for(i in y..newY){
-                        if ("$x$i" in visited) return x.absoluteValue + i.absoluteValue
-                        visited.add("$x$i")
-                    }
-                } else {
-                    for(i in y downTo newY){
-                        if ("$x$i" in visited) return x.absoluteValue + i.absoluteValue
-                        visited.add("$x$i")
-                    }
-                }
-                y = newY
+                val intersect = moveVertically(y, y - distance, x, visited)
+                if (intersect != 0) return intersect
+                y -= distance
             }
             3 -> {
-                val newX = x - distance
-
-                if(x < newX){
-                    for(i in x..newX){
-                        if ("$i$y" in visited) return i.absoluteValue + y.absoluteValue
-                        visited.add("$i$y")
-                    }
-                } else {
-                    for(i in x downTo newX){
-                        if ("$i$y" in visited) return i.absoluteValue + y.absoluteValue
-                        visited.add("$i$y")
-                    }
-                }
-                x = newX
+                val intersect = moveHorizontally(x, x - distance, y, visited)
+                if (intersect != 0) return intersect
+                x -= distance
             }
         }
-        visited.removeAt(visited.size-1)
     }
+    return 0
+}
+
+private fun moveHorizontally(x: Int, newX: Int, y: Int, visited: MutableList<String>): Int {
+    if (x < newX) {
+        for (i in x..newX) {
+            if ("$i$y" in visited) return i.absoluteValue + y.absoluteValue
+            visited.add("$i$y")
+        }
+    } else {
+        for (i in x downTo newX) {
+            if ("$i$y" in visited) return i.absoluteValue + y.absoluteValue
+            visited.add("$i$y")
+        }
+    }
+    visited.removeAt(visited.size - 1)
+    return 0
+}
+
+private fun moveVertically(y: Int, newY: Int, x: Int, visited: MutableList<String>): Int {
+    if (y < newY) {
+        for (i in y..newY) {
+            if ("$x$i" in visited) return x.absoluteValue + i.absoluteValue
+            visited.add("$x$i")
+        }
+    } else {
+        for (i in y downTo newY) {
+            if ("$x$i" in visited) return x.absoluteValue + i.absoluteValue
+            visited.add("$x$i")
+        }
+    }
+    visited.removeAt(visited.size - 1)
     return 0
 }
