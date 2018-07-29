@@ -5,7 +5,7 @@ fun day1(filename : String) : Int {
     var y = 0
     var facing = 0   // 0 -> North, 1 -> East, 2 -> South, 3 -> West
 
-    getContentAsStringArray(filename).forEach {
+    getContentAsStringArraySplitOnComma(filename).forEach {
         val direction = it[0]
         val distance = it.substringAfter(direction).toInt()
 
@@ -36,7 +36,7 @@ fun day1_2(filename: String) : Int{
     var facing = 0   // 0 -> North, 1 -> East, 2 -> South, 3 -> West
     var visited = mutableListOf<String>()
 
-    getContentAsStringArray(filename).forEach {
+    getContentAsStringArraySplitOnComma(filename).forEach {
         val direction = it[0]
         val distance = it.substringAfter(direction).toInt()
 

@@ -4,6 +4,10 @@ fun getContentAsString(filename : String) : String{
     return File(filename).readText()
 }
 
-fun getContentAsStringArray(filename : String) : List<String>{
+fun getContentAsStringArraySplitOnComma(filename : String) : List<String>{
     return getContentAsString(filename).replace(" ", "").split(",")
+}
+
+fun getContentAsStringArraySplitOnNewLine(filename : String) : List<String>{
+    return File(filename).readLines()
 }
