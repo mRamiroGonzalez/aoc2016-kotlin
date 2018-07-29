@@ -15,14 +15,14 @@ class Tests {
     }
 
     @Test
-    fun day2() {
+    fun part1() {
         File(testFileName).writeText("ULL\nRRDDD\nLURDL\nUUUUD")
         Assertions.assertEquals(1985, part1(testFileName))
     }
 
     @Test
-    fun day2_2() {
+    fun part2() {
         File(testFileName).writeText("ULL\nRRDDD\nLURDL\nUUUUD")
-        Assertions.assertEquals("5DB3", part1(testFileName))
+        Assertions.assertEquals("5DB3", part2(testFileName))
     }
 }

@@ -14,13 +14,13 @@ class Tests {
     }
 
     @Test
-    fun day1() {
+    fun part1() {
         File(testFileName).writeText( "R5, L5, R5, R3")
         Assertions.assertEquals(12, part1(testFileName))
     }
 
     @Test
-    fun day1_2(){
+    fun part2(){
         File(testFileName).writeText("R8, R4, R4, R8")
         Assertions.assertEquals(4, part2(testFileName))
     }
