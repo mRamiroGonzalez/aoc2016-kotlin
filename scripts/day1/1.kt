@@ -1,6 +1,9 @@
+package day1
+
+import getContentAsStringArraySplitOnComma
 import kotlin.math.absoluteValue
 
-fun day1(filename : String) : Int {
+fun part1(filename : String) : Int {
     var x = 0
     var y = 0
     var facing = 0   // 0 -> North, 1 -> East, 2 -> South, 3 -> West
@@ -30,7 +33,7 @@ fun day1(filename : String) : Int {
     return (x.absoluteValue + y.absoluteValue)
 }
 
-fun day1_2(filename: String) : Int{
+fun part2(filename: String) : Int{
     var x = 0
     var y = 0
     var facing = 0   // 0 -> North, 1 -> East, 2 -> South, 3 -> West

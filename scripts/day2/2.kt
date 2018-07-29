@@ -1,4 +1,8 @@
-fun day2(filename: String): Int{
+package day2
+
+import getContentAsStringArraySplitOnNewLine
+
+fun part1(filename: String): Int{
 
 //    0,0    1,0     2,0
 //    0,1    1,1     2,1
@@ -53,7 +57,7 @@ fun day2(filename: String): Int{
     return code.toInt()
 }
 
-fun day2_2(filename: String): String{
+fun part2(filename: String): String{
     var code = ""
     var coord = ""
     var x = 0
