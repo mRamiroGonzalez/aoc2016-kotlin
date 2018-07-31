@@ -22,4 +22,9 @@ class Tests {
                 "totally-real-room-200[decoy]")
         Assertions.assertEquals(1514, day4.part1(testFileName))
     }
+
+    @Test
+    fun part2() {
+        Assertions.assertEquals("very encrypted name", day4.decode("qzmt-zixmtkozy-ivhz-343"))
+    }
 }
