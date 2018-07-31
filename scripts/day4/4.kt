@@ -4,24 +4,19 @@ import getContentAsStringArraySplitOnNewLine
 
 fun part1(fileName: String): Int{
     val content = getContentAsStringArraySplitOnNewLine(fileName)
-    val regex = """[a-z]+[0-9]+""".toRegex()
+    val regex = """\[(.*?)\]""".toRegex()
     var count = 0
 
     content.forEach{
-        val cleanedInput = it.replace("-", "")
-
-        val matches = regex.findAll(cleanedInput)
-        val numberPart = matches.first().value.replace(Regex("""\D"""),"")
-        val stringPart = matches.first().value.replace(Regex("""\d+"""),"")
-        val checkPart = cleanedInput.replace(regex, "").replace("[\\[\\]]".toRegex(),"")
-
-        //println("$it \n -> $numberPart + $stringPart + $checkPart")
+        val numberPart = it.replace(Regex("""\D"""), "").toInt()
+        val stringPart = it.replace(Regex("""\d"""), "").replace("-","")
+        val checkPart = regex.findAll(it).first().groups[1]!!.value
 
         val charsMap = stringPart.groupingBy{it}.eachCount()
         val sortedMap = charsMap.toList().sortedWith(compareBy({(_, value) -> -value}, { (key, _) -> key})).toMap()
 
         if(checkPart in sortedMap.keys.joinToString("")){
-            count += numberPart.toInt()
+            count += numberPart
         }
     }
     return count
@@ -31,8 +26,7 @@ fun part2(fileName: String) : Int{
     val content = getContentAsStringArraySplitOnNewLine(fileName)
 
     content.forEach{
-        val decoded = decode(it)
-        if("north" in decoded){
+        if("north" in decode(it)){
             return it.replace(Regex("""\D"""), "").toInt()
         }
     }
@@ -41,21 +35,16 @@ fun part2(fileName: String) : Int{
 
 fun decode(entry: String) : String {
     val number = entry.replace(Regex("""\D"""), "").toInt()
-    val sentence = entry.replace(Regex("""\d+"""), "")
     val toAdd = number.rem(26)
     var decoded = ""
 
-    sentence.toCharArray().forEach {
-        if(it.isLetter()) {
-            var newChar = it.toInt() + toAdd
-            if(newChar > 122) {
-                val leftToAdd = newChar - 122
-                newChar = 97 + (leftToAdd - 1)
-            }
-            decoded += newChar.toChar()
-        } else {
-            decoded += " "
+    entry.toCharArray().forEach {
+        var newChar = it.toInt() + toAdd
+        if(newChar > 122) {
+            val leftToAdd = newChar - 122
+            newChar = 97 + (leftToAdd - 1)
         }
+        decoded += newChar.toChar()
     }
-    return decoded.trim()
+    return decoded
 }
