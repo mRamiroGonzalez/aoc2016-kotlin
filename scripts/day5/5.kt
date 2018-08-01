@@ -24,7 +24,7 @@ fun part2(fileName: String): String{
     val input = getContentAsString(fileName)
     println(input)
 
-    var code = "        ".toCharArray()
+    val code = "        ".toCharArray()
     var i = 0
 
     while (' ' in code){
@@ -37,13 +37,14 @@ fun part2(fileName: String): String{
 
             if (place.toInt() in 48..55){
                 if(code[place.toString().toInt()] == ' '){
-                    code.set(place.toString().toInt(), charCode)
+                    code[place.toString().toInt()] = charCode
                     println(code.joinToString(""))
                 }
             }
         }
         i++
     }
+    println("Number of iterations: $i")
     return code.joinToString("")
 }
 
