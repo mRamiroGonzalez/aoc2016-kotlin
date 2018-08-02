@@ -23,7 +23,6 @@ class Tests {
     fun part2(){
         File(testFileName).writeText( "abc")
         Assertions.assertEquals("05ace8e3", day5.part2(testFileName))
-
     }
 
     @Test

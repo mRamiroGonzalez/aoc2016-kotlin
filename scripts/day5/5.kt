@@ -24,10 +24,10 @@ fun part2(fileName: String): String{
     val input = getContentAsString(fileName)
     println(input)
 
-    val code = "        ".toCharArray()
+    val code = "________".toCharArray()
     var i = 0
 
-    while (' ' in code){
+    while ('_' in code){
         val hashed = getMd5for(input + i)
         if (hashed.startsWith("00000")){
             println(hashed)
@@ -36,9 +36,9 @@ fun part2(fileName: String): String{
             val charCode = hashedCharArray[6]
 
             if (place.toInt() in 48..55){
-                if(code[place.toString().toInt()] == ' '){
+                if(code[place.toString().toInt()] == '_'){
                     code[place.toString().toInt()] = charCode
-                    println(code.joinToString(""))
+                    println(code.joinToString(" "))
                 }
             }
         }
