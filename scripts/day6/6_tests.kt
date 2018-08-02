@@ -34,4 +34,26 @@ class Tests {
                 "enarar")
         Assertions.assertEquals("easter", day6.part1(testFileName))
     }
+
+    @Test
+    fun part2() {
+        File(testFileName).writeText( "" +
+                "eedadn\n" +
+                "drvtee\n" +
+                "eandsr\n" +
+                "raavrd\n" +
+                "atevrs\n" +
+                "tsrnev\n" +
+                "sdttsa\n" +
+                "rasrtv\n" +
+                "nssdts\n" +
+                "ntnada\n" +
+                "svetve\n" +
+                "tesnvt\n" +
+                "vntsnd\n" +
+                "vrdear\n" +
+                "dvrsen\n" +
+                "enarar")
+        Assertions.assertEquals("advent", day6.part2(testFileName))
+    }
 }
