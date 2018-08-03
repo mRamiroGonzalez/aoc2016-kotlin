@@ -10,7 +10,8 @@ fun main(args: Array<String>) {
 //    println(day5.part1("scripts/day5/5.txt"))
 //    println(day5.part2("scripts/day5/5.txt"))
 //    println(day6.part1("scripts/day6/6.txt"))
-    println(day6.part2("scripts/day6/6.txt"))
+//    println(day6.part2("scripts/day6/6.txt"))
+    println(day7.part1("scripts/day7/7.txt"))
 }
 
 
